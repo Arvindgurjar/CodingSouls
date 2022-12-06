@@ -59,7 +59,7 @@ router.get("/AdminHome", authenticate, (req, res) => {
 /* for post event data */
 router.post("/Event", async (req, res) => {
     try {
-        const { fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language, tdate, time, tid, check } = req.body
+        const { fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language,hacker, tdate, time, tid, check } = req.body
         if (!fname || !lname || !enrollment_number || !email || !contact || !gender || !college || !branch || !year || !semester || !section || !language || !tdate || !time || !tid || !check) {
             return res.status(400).send("missing Details");
         }
@@ -67,7 +67,7 @@ router.post("/Event", async (req, res) => {
         if (exist) {
             return req.status(401).send("Already Register");
         }
-        const newEventReg = new EventModel({ fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language, tdate, time, tid, check })
+        const newEventReg = new EventModel({ fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language,hacker, tdate, time, tid, check })
         await newEventReg.save();
         res.status(201).send("Register Successful");
         const transpoter = nodemailer.createTransport({
@@ -85,7 +85,7 @@ router.post("/Event", async (req, res) => {
             to: email,
             subject: "Successful Event Registration",
             html: `<h2>Hi ${fname.charAt(0).toUpperCase() + fname.slice(1)} ${lname.charAt(0).toUpperCase() + lname.slice(1)},</h2>
-              <p style="font-size:19px">You are Registered Successfully. please attach your college I'd and payment receipt to:</p>
+              <p style="font-size:19px">You are Registered Successfully.</p>
               <p style="font-size:17px">Email:<a href="mailto:coding.souls@sdbc.ac.in">coding.souls@sdbc.ac.in</a>
               <p style="font-size:17px">For any other query contact us at:<a href="tel:8966826889">8966826889</a></p>
               <h2>Thanks and regards!<h2>
@@ -125,7 +125,7 @@ router.post("/Member", async (req, res) => {
             to: email,
             subject: "Successful Member Registration",
             html: `<h2>Hi ${fname.charAt(0).toUpperCase() + fname.slice(1)} ${lname.charAt(0).toUpperCase() + lname.slice(1)},</h2>
-              <p style="font-size:19px">You are Registered Successfully For As A Member Of Coding Souls Of BGI. please attach your college I'd and payment receipt to:</p>
+              <p style="font-size:19px">You are Registered Successfully For As A Member Of Coding Souls Of BGI.</p>
               <p style="font-size:17px">Email:<a href="mailto:coding.souls@sdbc.ac.in">coding.souls@sdbc.ac.in</a>
               <p style="font-size:17px">For any other query contact us at:<a href="tel:8966826889">8966826889</a></p>
               <h2>Thanks and regards!<h2>
@@ -194,8 +194,8 @@ router.get("/MemberData", authenticate, async (req, res) => {
 /* for search event data and send response */
 router.post("/EventSearch", async (req, res) => {
     try {
-        const { fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language, tdate, time, tid, check } = req.body
-        const data = await EventModel.find({ $or: [{ fname }, { lname }, { enrollment_number }, { email }, { contact }, { gender }, { college }, { branch }, { year }, { semester }, { section }, { language }, { tdate }, { time }, { tid }, { check }] })
+        const { fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language,hacker, tdate, time, tid, check } = req.body
+        const data = await EventModel.find({ $or: [{ fname }, { lname }, { enrollment_number }, { email }, { contact }, { gender }, { college }, { branch }, { year }, { semester }, { section }, { language },{ hacker },{ tdate }, { time }, { tid }, { check }] })
         res.status(201).send(data)
     } catch (err) {
         res.status(400).send(err);

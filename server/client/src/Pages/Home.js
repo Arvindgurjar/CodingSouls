@@ -7,27 +7,27 @@ import Logo from "../images/Logo.jpg"
 import { ImCross } from 'react-icons/im';
 import { NavLink } from "react-router-dom"
 import { events } from './Event/EventData/EventData'
-import EIMG from "../images/img.jpg"
+
 const Home = () => {
     const [modal, setmodal] = useState(true)
     const [visi, setvisi] = useState(false)
-    const [opac,setopac]=useState(false)
+    const [opac, setopac] = useState(false)
     const click = () => {
         setmodal(!modal)
-        setopac(false);  
+        setopac(false);
     }
 
     const check = () => {
         events.forEach((value, index) => {
             if (events[index].end > new Date()) {
-                  setvisi(true)  
-                  setopac(true); 
+                setvisi(true)
+                setopac(true);
             }
         })
     }
     useEffect(() => {
         check();
-    },[])
+    }, [])
     return (
         <>
             {/* Carousel slider start */}
@@ -63,18 +63,27 @@ const Home = () => {
                     <div className="row">
                         <div className="col-10 col-md-5 col-lg-4 mx-auto" >
                             <div className='Modal'>
-                                <div  style={{ cursor: "pointer", marginRight: "10px", marginTop: "15px" }} className="cross" onClick={click}><ImCross /></div>
-                                <img src={EIMG} alt=""  className='ms-4 mt-3 popupimg'/>
+                                <div style={{ cursor: "pointer", marginTop: "15px" }} className="cross" onClick={click}><ImCross /></div>
+                                {/* <div style={{ marginTop: "30px" }} className="text-center">
+                                    {/* <img src={item.img} alt="" className='mx-auto mb-2 popupimg' /> }
+                                    <h5>MEMBER REGISTRATION STARTS ... </h5>
+                                    <h6 className='ms-3'>Registration Last Date : 10-09-2022</h6>
+                                    <div className="ms-5 my-3">
+                                        <NavLink to="/Guidelines" className="ms-2 ms-md-5"><button className='btn btn-info '>Guidelines</button></NavLink>
+                                        <NavLink to="/register/memberregister"><button className='btn btn-primary ms-2'>Register</button></NavLink>
+                                    </div>
+                                </div> */}
                                 {events.map((item, index) => {
-                                    if (new Date() <= item.end) {
+                                    if (new Date() <= item.Rend) {
                                         if (new Date() > item.Rstart && new Date() < item.Rend) {
                                             return (
                                                 <div style={{ marginTop: "30px" }} className="text-center" key={index}>
+                                                    { <img src={item.img} alt="" className='mx-auto mb-2 popupimg' />}
                                                     <h5>{item.title}</h5>
                                                     <h6 className='ms-3'>Event Date : {item.start.toDateString()}</h6>
                                                     <h6 className='ms-3'>Registration Last Date : {item.Rend.toDateString()}</h6>
                                                     <div className="ms-5 my-3">
-                                                        <NavLink to="/Events" className="ms-2 ms-md-5"><button className='btn btn-info '>More Detail</button></NavLink>
+                                                        <NavLink to="/events" className="ms-2 ms-md-5"><button className='btn btn-info '>Details</button></NavLink>
                                                         <NavLink to="/register/eventregister"><button className='btn btn-primary ms-2'>Register</button></NavLink>
                                                     </div>
                                                 </div>
@@ -83,11 +92,12 @@ const Home = () => {
                                         else {
                                             return (
                                                 <div style={{ marginTop: "30px" }} className="text-center" key={index}>
+                                                    {/* <img src={item.img} alt="" className='mx-auto mb-2 popupimg'/> */}
                                                     <h5>{item.title}</h5>
-                                                    <h6 className='ms-3'>Event Date : {item.start.toDateString()}</h6>
-                                                    <h6 className='ms-3'>Registration Last Date : {item.Rend.toDateString()}</h6>
+                                                    {<h6 className='ms-3'> Event Date : {item.start.toDateString()}</h6>}
+                                                    <h6 className='ms-3'>Registration Start Date  : {item.Rstart.toDateString()} </h6>
                                                     <div className="ms-5 my-3">
-                                                        <NavLink to="/Events" className="ms-2 ms-md-5"><button className='btn btn-info '>More Detail</button></NavLink>
+                                                        <NavLink to="/events" className="ms-2 ms-md-5"><button className='btn btn-info '>Detail</button></NavLink>
                                                     </div>
                                                 </div>
                                             )

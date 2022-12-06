@@ -285,14 +285,9 @@ const MemberRegi = () => {
 
               })} onChange={Change}>
                 <option value="" disabled selected>Select Semester  </option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
+                <option>even</option>
+                <option>odd</option>
+                
               </select>
               {errors.semester && <span style={{ fontSize: "12px", fontWeight: "bold", color: "red", marginLeft: "10px" }}>{errors.semester.message}</span>}
             </div>

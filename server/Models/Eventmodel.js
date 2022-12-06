@@ -99,11 +99,10 @@ const EventSch = new mongoose.Schema({
         min:1      
     },
     semester:{
-        type:Number,
+        type:String,
         trim:true,
         require:true,
-        max:8,
-        min:1      
+        lowercase:true      
     },
     section:{
         type:String,
@@ -115,6 +114,12 @@ const EventSch = new mongoose.Schema({
         trim:true,
         require:true, 
         lowercase:true    
+    },
+    hacker:{
+          type:String,
+          trim:true,
+          require:true,
+          lowercase:true
     },
     tdate:{
         type:String,

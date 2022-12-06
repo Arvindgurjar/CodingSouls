@@ -275,6 +275,7 @@ const AdminHome = () => {
                 <option>semester</option>
                 <option>section</option>
                 <option>language</option>
+                <option>hacker</option>
                 <option>time</option>
                 <option>tid</option>
                 <option>check</option>

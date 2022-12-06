@@ -37,7 +37,7 @@ const Navbar = () => {
     },[])
   return (
     <div>
-      <nav className="navbar navbar-expand-md">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <NavLink className="navbar-brand link" to="/"><img src={Logo} alt="" /><span>CODING SOULS <p>Until Salvations</p></span></NavLink>
           <div className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarDropdown" onClick={() => settoggle(!toggle)}>

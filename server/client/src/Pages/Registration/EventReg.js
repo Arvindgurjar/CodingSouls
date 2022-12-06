@@ -11,9 +11,9 @@ import Loading from "../../Components/Loading"
 const EventRegi = () => {
   const Navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [user, setuser] = useState({ fname: "", lname: "", enrollment_number: "", email: "", contact: "", gender: "", college: "", branch: "", year: "", semester: "", section: "", language: "", tdate: "", time: "", tid: "", check: "" })
+  const [user, setuser] = useState({ fname: "", lname: "", enrollment_number: "", email: "", contact: "", gender: "", college: "", branch: "", year: "", semester: "", section: "", language: "", hacker: "", tdate: "", time: "", tid: "", check: "" })
   const [data1, setdata] = useState([]);
-  const [load,setload] =useState(true);
+  const [load, setload] = useState(true);
   let name, value;
   const Change = (e) => {
     name = e.target.name;
@@ -56,12 +56,12 @@ const EventRegi = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme:"colored"
+      theme: "colored"
     });
   }
   const Submit = async () => {
     /* for post data */
-    const { fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language, tdate, time, tid, check } = user
+    const { fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language, hacker, tdate, time, tid, check } = user
     try {
       const res = await fetch("/Event", {
         method: "POST",
@@ -69,7 +69,7 @@ const EventRegi = () => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language, tdate, time, tid, check
+          fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language, hacker, tdate , time , tid , check
         })
 
       })
@@ -92,8 +92,8 @@ const EventRegi = () => {
   }
   const show = async () => {
     /* for checking of form is open or closed by admin */
-    try{
-      const res = await fetch("/toggle",{
+    try {
+      const res = await fetch("/toggle", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -104,16 +104,15 @@ const EventRegi = () => {
       const data = await res.json()
       setdata(...data);
       setload(false);
-    }catch(err)
-    {
+    } catch (err) {
       console.log(err)
     }
   }
   useEffect(() => {
     show();
-  },[data1])
-  if(load){
-    return <Loading/>
+  }, [data1])
+  if (load) {
+    return <Loading />
   }
   /* for event closed */
   if (!data1.Event) {
@@ -122,7 +121,7 @@ const EventRegi = () => {
   /* for event open */
   return (
     <div>
-      <ToastContainer/>
+      <ToastContainer />
       <div className="container ContainerMargin">
         <div className="row text-center">
           <LOGO />
@@ -284,14 +283,8 @@ const EventRegi = () => {
 
               })} onChange={Change}>
                 <option value="" disabled selected>Select Semester  </option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
+                <option>even</option>
+                <option>odd</option>
               </select>
               {errors.semester && <span style={{ fontSize: "12px", fontWeight: "bold", color: "red", marginLeft: "10px" }}>{errors.semester.message}</span>}
             </div>
@@ -326,30 +319,37 @@ const EventRegi = () => {
               {errors.language && <span style={{ fontSize: "12px", fontWeight: "bold", color: "red", marginLeft: "10px" }}>{errors.language.message}</span>}
             </div>
             <div className="col-12 col-sm-6 col-lg-4 mx-auto my-1">
+              <label htmlFor="hacker" className="form-label">hackerrank ID</label>
+              <input type="text" className="form-control" name='hacker' value={user.hacker} placeholder='hackerrank id' id="hacker" {...register("hacker", {
+                required: "Please enter your ID",
+              })} onChange={Change} />
+              {errors.hacker && <span style={{ fontSize: "12px", fontWeight: "bold", color: "red", marginLeft: "10px" }}>{errors.hacker.message}</span>}
+            </div>
+            <div className="col-12 col-sm-6 col-lg-4 mx-auto my-1">
               <label htmlFor="Date" className="form-label">Transaction Date</label>
-              <input type="date" className="form-control" name='tdate' value={user.tdate} id="Date" {...register("tdate", {
-                required: "Please enter your Date",
+              <input type="date" className="form-control" name='tdate' value={user.tdate} id="Date"  {...register("tdate", {
+                // required: "Please enter your Date",
 
               })} onChange={Change} />
               {errors.tdate && <span style={{ fontSize: "12px", fontWeight: "bold", color: "red", marginLeft: "10px" }}>{errors.tdate.message}</span>}
             </div>
             <div className="col-12 col-sm-6 col-lg-4 mx-auto my-1">
               <label htmlFor="Time" className="form-label">Transaction Time</label>
-              <input type="time" className="form-control" name='time' value={user.time} id="Time" {...register("time", {
-                required: "Please enter your Time",
+              <input type="time" className="form-control" name='time' value={user.time} id="Time"  {...register("time", {
+                // required: "Please enter your Time",
 
               })} onChange={Change} />
               {errors.time && <span style={{ fontSize: "12px", fontWeight: "bold", color: "red", marginLeft: "10px" }}>{errors.time.message}</span>}
             </div>
             <div className="col-12 col-sm-6 col-lg-4 mx-auto my-1">
               <label htmlFor="Transaction1" className="form-label">Transaction ID/Reference ID</label>
-              <input type="text" className="form-control" name='tid' value={user.tid} placeholder='Transaction ID' id="Transaction1" {...register("tid", {
-                required: "Please enter your Transaction ID",
+              <input type="text" className="form-control" name='tid' value={user.tid} placeholder='Transaction ID' id="Transaction1"  {...register("tid", {
+                // required: "Please enter your Transaction ID",
 
               })} onChange={Change} />
               {errors.tid && <span style={{ fontSize: "12px", fontWeight: "bold", color: "red", marginLeft: "10px" }}>{errors.tid.message}</span>}
             </div>
-            <div className="col-12 col-sm-6 col-lg-4 mx-auto my-5">
+             <div className="col-12 col-sm-6 col-lg-4 mx-auto my-5">
               <img src={QR} alt="" height="100%" width="100%" />
             </div>
             <div>
@@ -357,8 +357,8 @@ const EventRegi = () => {
                 Please check TransactionID /ReferenceID on Payment Receipt.
               </h3>
               <h3>Please check your email for further process.</h3>
-              <h3>Registration fees will be 100 Rupees only.</h3>
-            </div>
+              <h3>Registration fees will be 50 Rupees only.</h3>
+            </div> 
             <div className="col-12 my-3">
               <div className="form-check">
                 <input className="form-check-input" type="checkbox" id="Check" {...register("check", {

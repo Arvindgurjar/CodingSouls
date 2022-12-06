@@ -1,10 +1,7 @@
 const express = require("express");
 const app  = express()
 const jwt = require("jsonwebtoken");
-
 const LoginModel = require("../Models/LoginModel");
-
-
 const authenticate = async (req,res,next) =>{
      try{ const token = req.headers?.cookie;
           const token1 = token.split("=");
@@ -26,12 +23,8 @@ const authenticate = async (req,res,next) =>{
           req.rootuser=rootuser;
           req.userID=rootuser._id;
           next();
-
-
      }catch(err){
         res.status(400).send("unauthenticate")
      }
-
 }
-
 module.exports = authenticate;

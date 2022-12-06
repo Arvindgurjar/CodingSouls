@@ -18,8 +18,8 @@ const Footer = () => {
             <h6 className='my-2'>SUSHILA DEVI BANSAL COLLEGE INDORE</h6>
             <NavLink to="/Contact" style={{ textDecoration: "none", color: "white" }}><p className='Emaillink link my-2'>{FooterData.Addess}</p></NavLink>
           </div>
-          <div className="col-12  col-md-4">
-            <div className='mx-auto'>
+          <div className="col-12 col-md-4">
+            <div className='d-flex align-items-center justify-content-center d-md-block'>
               <div className='my-4 mx-3'>
                 <a className='text-white facebookIcon' style={{ padding: "10px 12px" }} target="_blank" href={FooterData.Facebook}>
                   <RiFacebookFill />

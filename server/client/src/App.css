@@ -46,7 +46,7 @@ background: linear-gradient(0deg, rgba(201,187,224,1) 39%, rgba(105,210,210,1) 8
 .cross{
     margin-left:260px
 }
-@media (max-width:300px) {
+@media (max-width:350px) {
     .popupimg{
         height:150px; width:200px;
     }

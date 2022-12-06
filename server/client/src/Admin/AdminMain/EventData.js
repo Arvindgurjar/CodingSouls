@@ -24,6 +24,7 @@ const EventData = () => {
         }
         else {
             const data = await res.json();
+           // console.log(data);
             setEData([...data]);
         }
         setShow(!show)
@@ -78,6 +79,7 @@ const EventData = () => {
                                     <th scope="col">Semester</th>
                                     <th scope="col">Section</th>
                                     <th scope="col">Language</th>
+                                    <th scope="col">hackerrank ID</th>
                                     <th scope="col">Transaction Date</th>
                                     <th scope="col">Transaction Time</th>
                                     <th scope="col">Transaction ID</th>
@@ -86,7 +88,7 @@ const EventData = () => {
                             </thead>
                             <tbody>
                                 {EData.map((item, index) => {
-                                    const { fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language, tdate, time, tid } = item
+                                    const { fname, lname, enrollment_number, email, contact, gender, college, branch, year, semester, section, language,hacker, tdate, time, tid } = item
                                     return (
                                         <tr key={index}>
                                             <th scope="row">{index + 1}</th>
@@ -102,6 +104,7 @@ const EventData = () => {
                                             <td>{semester}</td>
                                             <td>{section.toUpperCase()}</td>
                                             <td>{language.toUpperCase()}</td>
+                                            <td>{hacker}</td>
                                             <td>{tdate}</td>
                                             <td>{time}</td>
                                             <td>{tid.toUpperCase()}</td>

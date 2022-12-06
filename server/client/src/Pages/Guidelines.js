@@ -8,7 +8,7 @@ const Guidelines = () => {
         <div className="row">
           <LOGO />
           <h3 className='HeadingPageName'>Coding Souls : Until Salvations</h3>
-          <div className="col-12 my-5 mx-5">
+          <div className="col-12 my-5 mx-auto">
             <div className='text-start my-3'>
               <h5 className='HeadingPageName'>Membership Rules</h5>
               <ul>
@@ -22,7 +22,6 @@ const Guidelines = () => {
               <h5 className='HeadingPageName'>Website Coordinators</h5>
               <ul>
                 <li>Mr. Arvind Gurjar </li>
-                <li>Mr. Shahnawaz Ansari</li>
               </ul>
             </div>
             <div className='text-start my-3'>
